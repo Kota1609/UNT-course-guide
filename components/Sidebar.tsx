@@ -1,10 +1,17 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { gsap } from "gsap"
-import { Library, Info, Cog, ChevronLeft, BotMessageSquare, Tv } from "lucide-react"
-import { cn } from "@/lib/utils"
-import Image from 'next/image';
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import {
+  Library,
+  Info,
+  Cog,
+  ChevronLeft,
+  BotMessageSquare,
+  Tv,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const tabs = [
   { name: "Live Lectures", icon: Tv },
@@ -12,7 +19,7 @@ const tabs = [
   { name: "AI Assistant", icon: BotMessageSquare },
   { name: "About", icon: Info },
   { name: "Technical", icon: Cog },
-]
+];
 
 interface SidebarProps {
   activeTab: string;
@@ -20,8 +27,8 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
-  const sidebarRef = useRef(null)
-  const [isCollapsed, setIsCollapsed] = useState(false)
+  const sidebarRef = useRef(null);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
     gsap.from(sidebarRef.current, {
@@ -29,14 +36,14 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
       opacity: 0,
       duration: 0.5,
       ease: "power3.out",
-    })
-  }, [])
+    });
+  }, []);
 
   return (
-    <aside 
-      ref={sidebarRef} 
+    <aside
+      ref={sidebarRef}
       className={cn(
-        "relative min-h-screen border-r border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+        "relative min-h-screen border-r border-border/40 bg-[hsl(145,57%,37%)]",
         "transition-all duration-300 ease-in-out",
         isCollapsed ? "w-16" : "w-72 lg:w-56"
       )}
@@ -66,15 +73,15 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
               className="text-primary"
             />
             {!isCollapsed && (
-              <h2 className="text-lg font-semibold tracking-tight">UCSD-SitIn</h2>
+              <h2 className="text-lg font-semibold tracking-tight">UNT-Live</h2>
             )}
           </div>
         </div>
         <div className="px-3">
           <div className="space-y-1">
             {tabs.map((tab) => {
-              const Icon = tab.icon
-              const isActive = activeTab === tab.name
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.name;
               return (
                 <button
                   key={tab.name}
@@ -86,20 +93,25 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
                     "disabled:pointer-events-none disabled:opacity-50",
                     "hover:bg-accent hover:text-accent-foreground",
                     isCollapsed ? "px-3 py-2 justify-center" : "px-4 py-2",
-                    isActive 
-                      ? "bg-secondary text-secondary-foreground" 
-                      : "text-muted-foreground hover:bg-secondary/80 hover:text-secondary-foreground"
+                    isActive
+                      ? "bg-secondary text-secondary-foreground"
+                      : "text-black hover:bg-secondary/80 hover:text-secondary-foreground"
                   )}
                   title={isCollapsed ? tab.name : undefined}
                 >
-                  <Icon className={cn("h-4 w-4", isActive ? "text-foreground" : "text-muted-foreground")} />
+                  <Icon
+                    className={cn(
+                      "h-4 w-4",
+                      isActive ? "text-foreground" : "text-muted-foreground"
+                    )}
+                  />
                   {!isCollapsed && tab.name}
                 </button>
-              )
+              );
             })}
           </div>
         </div>
       </div>
     </aside>
-  )
+  );
 }

@@ -1,0 +1,22 @@
+# Node
+node_modules/
+.next/
+dist/
+*.node
+
+# Environment
+.env
+.env.local
+
+# Mac & System files
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Large or unnecessary files
+Accounting.txt
+SOC_INET_Summer.pdf
+*.log

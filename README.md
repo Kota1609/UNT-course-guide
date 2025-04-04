@@ -1,16 +1,16 @@
-# 🎓 UCSD Sit-In
+# 🎓 UNT Live
 
 [![Next.js](https://img.shields.io/badge/Next.js-13.5-black?style=flat&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.2-blue?style=flat&logo=typescript)](https://www.typescriptlang.org)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3-38bdf8?style=flat&logo=tailwind-css)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?style=flat&logo=vercel)](https://ucsd-sitin.vercel.app/)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?style=flat&logo=vercel)](https://unt-course-guide.vercel.app/)
 
-> 🚀 A real-time lecture availability tracker for UCSD students. Find empty seats, discover interesting classes, and make the most of your academic journey!
+> 🚀 A real-time lecture availability tracker for UNT students. Find empty seats, discover interesting classes, and make the most of your academic journey!
 
 ## 🌐 Live Site
 
-Visit [UCSD Sit-In](https://ucsd-sitin.vercel.app/) to start exploring lectures in real-time!
+Visit [UNT Live](https://unt-course-guide.vercel.app/) to start exploring lectures in real-time!
 
 ## ✨ Features
 
@@ -77,4 +77,4 @@ This application combines several modern technologies to provide real-time lectu
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-Built with ❤️ for UCSD Students
+Built with ❤️ for UNT Students

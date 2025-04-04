@@ -1,5 +1,5 @@
 {
-  "name": "ucsd-sitin",
+  "name": "unt-live",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,16 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dqbd/tiktoken": "^1.0.20",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@pinecone-database/pinecone": "^4.1.0",
     "airtable": "^0.12.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^16.4.7",
     "gsap": "^3.12.7",
+    "langchain": "^0.3.20",
     "lucide-react": "^0.473.0",
     "next": "15.1.5",
-    "openai": "^4.83.0",
+    "openai": "^4.91.1",
+    "pdf-parse": "^1.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "styled-components": "^6.1.14",

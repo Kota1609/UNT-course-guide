@@ -1,5 +1,5 @@
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
+import { Fragment } from "react";
+import { Popover, Transition } from "@headlessui/react";
 
 interface CourseDescription {
   code: string;
@@ -14,7 +14,10 @@ interface CourseTooltipProps {
   description: CourseDescription | null;
 }
 
-export default function CourseTooltip({ children, description }: CourseTooltipProps) {
+export default function CourseTooltip({
+  children,
+  description,
+}: CourseTooltipProps) {
   if (!description) {
     return <>{children}</>;
   }
@@ -23,7 +26,11 @@ export default function CourseTooltip({ children, description }: CourseTooltipPr
     <Popover className="relative inline-block">
       {({ open }) => (
         <>
-          <Popover.Button className={`outline-none ${open ? 'text-yellow-400' : ''} transition-colors duration-200`}>
+          <Popover.Button
+            className={`outline-none ${
+              open ? "text-yellow-400" : ""
+            } transition-colors duration-200`}
+          >
             {children}
           </Popover.Button>
           <Transition
@@ -37,38 +44,54 @@ export default function CourseTooltip({ children, description }: CourseTooltipPr
           >
             <Popover.Panel static>
               {({ close }) => (
-                <div 
-                  className="fixed inset-0 z-[9999]" 
+                <div
+                  className="fixed inset-0 z-[9999]"
                   onClick={() => close()}
-                  style={{ pointerEvents: 'none' }}
+                  style={{ pointerEvents: "none" }}
                 >
                   <div className="flex min-h-full items-center justify-center p-4 text-center">
-                    <div 
+                    <div
                       className="relative transform overflow-hidden rounded-lg shadow-[0_0_20px_-3px_rgba(0,0,0)] ring-1 ring-black ring-opacity-5 outline outline-white bg-gray-800 p-4 w-screen max-w-sm"
                       style={{
-                        position: 'absolute',
-                        left: '50%',
-                        top: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        pointerEvents: 'auto'
+                        position: "absolute",
+                        left: "50%",
+                        top: "50%",
+                        transform: "translate(-50%, -50%)",
+                        pointerEvents: "auto",
                       }}
                       onClick={(e) => e.stopPropagation()}
                     >
                       <div className="flex flex-col gap-2">
                         <div className="flex items-center justify-between">
-                          <span className="text-lg font-medium text-yellow-400">{description.code}</span>
+                          <span className="text-lg font-medium text-yellow-400">
+                            {description.code}
+                          </span>
                           {description.units && (
-                            <span className="text-sm text-gray-400">{description.units} units</span>
+                            <span className="text-sm text-white">
+                              {description.units} units
+                            </span>
                           )}
                         </div>
                         {description.title && (
-                          <p className="text-sm font-medium text-gray-300">{description.title}</p>
+                          <p className="text-sm font-medium text-white">
+                            {description.title}
+                          </p>
                         )}
                         {description.description && (
-                          <p className="text-sm text-white text-left">{description.description}</p>
+                          <p className="text-sm text-white text-left">
+                            <span className="font-semibold text-white/80 block">
+                              Description:
+                            </span>
+                            {description.description}
+                          </p>
                         )}
                         {description.prerequisites && (
-                          <p className="text-sm text-gray-400 italic text-left">{description.prerequisites}</p>
+                          <p className="text-sm text-white text-left italic">
+                            <span className="not-italic font-semibold text-white/80 block">
+                              Prerequisites:
+                            </span>
+                            {description.prerequisites}
+                          </p>
                         )}
                       </div>
                     </div>
@@ -80,5 +103,5 @@ export default function CourseTooltip({ children, description }: CourseTooltipPr
         </>
       )}
     </Popover>
-  )
+  );
 }

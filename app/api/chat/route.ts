@@ -231,15 +231,15 @@ Units: ${metadata.units}
 Relevance Score: ${score}%
       `.trim();
     }).join('\n\n');
-
+console.log("Context is:", context)
     // Generate chat completion with improved system prompt
     const completion = await openai.chat.completions.create({
       model: "gpt-4-turbo-preview",
       messages: [
         {
           role: "system",
-          content: `You are a helpful UCSD course advisor assistant. Use the following course information to answer questions.
-                   Only reference courses mentioned in the context. If you're not sure, say so.
+          content: `You are a helpful UNT course advisor assistant. Use the following course information to answer questions.
+                   Only reference courses mentioned in the context and believe that the courses in the context are for spring 2025. If you're not sure, say so.
                    Be concise but informative. Format your responses in a conversational way.
                    
                    IMPORTANT FORMATTING RULES:

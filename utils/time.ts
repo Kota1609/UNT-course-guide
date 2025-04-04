@@ -1,12 +1,12 @@
 // Get current time in Pacific Time
-export const getPSTDate = (): Date => {
+export const getCSTDate = (): Date => {
   const now = new Date();
-  return new Date(now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+  return new Date(now.toLocaleString('en-US', { timeZone: 'America/Chicago' }));
 };
 
-export const formatPSTTime = (date: Date = getPSTDate()): string => {
+export const formatCSTTime = (date: Date = getCSTDate()): string => {
   return date.toLocaleString('en-US', {
-    timeZone: 'America/Los_Angeles',
+    timeZone: 'America/Chicago',
     hour: 'numeric',
     minute: '2-digit',
     hour12: true
@@ -15,8 +15,8 @@ export const formatPSTTime = (date: Date = getPSTDate()): string => {
 
 // Parse time like "6:00p" to a Date object
 export const parseTime = (timeStr: string): Date => {
-  const now = getPSTDate();
-  const match = timeStr.trim().match(/^(\d+):(\d+)(a|p)$/i);
+  const now = getCSTDate();
+  const match = timeStr.trim().match(/^(\d+):(\d+)\s*(a|p)(m)?$/i);
   
   if (!match) {
     console.error('Invalid time format:', timeStr);
@@ -41,27 +41,27 @@ export const parseTime = (timeStr: string): Date => {
 
 // Check if class runs on current day
 export const isClassDay = (days: string): boolean => {
-  const pstDate = getPSTDate();
-  const dayOfWeek = pstDate.getDay(); // 0 = Sunday, 1 = Monday, etc.
+  const cstDate = getCSTDate();
+  const dayOfWeek = cstDate.getDay(); // 0 = Sunday, 1 = Monday, etc.
   
   // Convert day of week to matching pattern in days string
   const dayMap: { [key: number]: string } = {
     1: 'M',  // Monday
     2: 'Tu', // Tuesday
     3: 'W',  // Wednesday
-    4: 'Th', // Thursday
+    4: 'R', // Thursday
     5: 'F',  // Friday
   };
 
   const currentDay = dayMap[dayOfWeek];
   if (!currentDay) return false; // Weekend
 
-  // Handle special cases for two-character days (Tu, Th)
-  if (currentDay === 'Tu' || currentDay === 'Th') {
+  // Handle special cases for two-character days (Tu, R)
+  if (currentDay === 'Tu' || currentDay === 'R') {
     return days.includes(currentDay);
   }
 
-  // For single character days (M, W, F), we need to check if it's not part of Tu/Th
+  // For single character days (M, W, F), we need to check if it's not part of Tu/R
   if (currentDay === 'M') {
     // Check it's not part of Tu
     const mIndex = days.indexOf('M');
@@ -84,7 +84,7 @@ export const isClassDay = (days: string): boolean => {
 export const isClassLive = (startTime: string, endTime: string, days: string): boolean => {
   if (!isClassDay(days)) return false;
   
-  const now = getPSTDate();
+  const now = getCSTDate();
   const start = parseTime(startTime);
   const end = parseTime(endTime);
   
@@ -94,7 +94,7 @@ export const isClassLive = (startTime: string, endTime: string, days: string): b
 export const isClassUpcoming = (startTime: string, endTime: string, days: string): boolean => {
   if (!isClassDay(days)) return false;
   
-  const now = getPSTDate();
+  const now = getCSTDate();
   const start = parseTime(startTime);
   // Class is upcoming if it starts within the next 2 hours
   const twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000);
@@ -104,7 +104,7 @@ export const isClassUpcoming = (startTime: string, endTime: string, days: string
 
 // Format time like "6:00p" to "6:00 PM"
 export const formatTime = (timeStr: string): string => {
-  const match = timeStr.trim().match(/^(\d+):(\d+)(a|p)$/i);
+  const match = timeStr.trim().match(/^(\d+):(\d+)\s*(a|p)(m)?$/i);
   if (!match) return timeStr;
   
   const period = match[3].toLowerCase() === 'p' ? 'PM' : 'AM';
